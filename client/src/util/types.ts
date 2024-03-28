@@ -62,7 +62,7 @@ export interface VehicleType {
   updatedAt: string;
   __v: number;
 }
-export interface VehicalFormType {
+export interface VehicleFormType {
   thumbnail: string;
   name: string;
   range: number;

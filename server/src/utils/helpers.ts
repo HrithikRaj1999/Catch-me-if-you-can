@@ -31,7 +31,7 @@ export function checkCapture(
         message: `${copName} has successfully captured the fugitive in ${selectedCity} using a ${curSelectedVehicle}.`,
         copName,
         city: allCities.find(({ name }) => name === selectedCity),
-        vehical: allVehicles.find(({ name }) => name === curSelectedVehicle),
+        vehicle: allVehicles.find(({ name }) => name === curSelectedVehicle),
       };
     }
   }

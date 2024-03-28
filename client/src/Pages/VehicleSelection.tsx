@@ -37,7 +37,7 @@ const VehicleSelection = () => {
                     }}
                   />
                 ) : (
-                  <h1>No vehical Found</h1>
+                  <h1>No vehicle Found</h1>
                 )}
               </div>
             ))}

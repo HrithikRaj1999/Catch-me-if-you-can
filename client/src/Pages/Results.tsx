@@ -1,7 +1,5 @@
 import { useLocation } from "react-router-dom";
-import {
-  CaptureSuccessPropsType, LocationStateType
-} from "../util/types";
+import { CaptureSuccessPropsType, LocationStateType } from "../util/types";
 
 const CaptureSuccess = ({
   copName,

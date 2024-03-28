@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { CREATE_VEHICLE } from "../Router/Routes";
-import { VehicalFormType } from "../util/types";
+import { VehicleFormType } from "../util/types";
 
 const INIT_VAL = {
   thumbnail: "",
@@ -16,7 +16,7 @@ const INIT_VAL = {
 const useCreateVehicle = () => {
   const navigate = useNavigate();
   const [vehicleFormValues, setVehicleFormValues] =
-    useState<VehicalFormType>(INIT_VAL);
+    useState<VehicleFormType>(INIT_VAL);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
