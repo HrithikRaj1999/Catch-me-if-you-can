@@ -1,5 +1,7 @@
 import { useLocation } from "react-router-dom";
-import { CaptureSuccessPropsType, City, VehicleType } from "../util/types";
+import {
+  CaptureSuccessPropsType, LocationStateType
+} from "../util/types";
 
 const CaptureSuccess = ({
   copName,
@@ -48,19 +50,8 @@ const CriminalResults = () => (
 
 const Results = () => {
   const location = useLocation();
-  const {
-    isSuccess,
-    message,
-    copName,
-    city,
-    vehicle,
-  }: {
-    isSuccess: boolean;
-    message: string;
-    copName: string;
-    city: City;
-    vehicle: VehicleType;
-  } = location.state; // {message,copName,cityDetails,vehicalDetails}
+  const { isSuccess, message, copName, city, vehicle }: LocationStateType =
+    location.state; // {message,copName,cityDetails,vehicalDetails}
   return (
     <div className="flex flex-col items-center justify-center mt-10 gap-3 mx-4 sm:mx-10">
       <h1 className="text-2xl text-center font-serif">

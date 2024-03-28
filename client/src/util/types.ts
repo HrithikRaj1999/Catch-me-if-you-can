@@ -22,6 +22,13 @@ export interface City {
   updatedAt: string;
   __v: number;
 }
+export interface LocationStateType {
+  isSuccess: boolean;
+  message: string;
+  copName: string;
+  city: City;
+  vehicle: VehicleType;
+}
 export interface CaptureSuccessPropsType {
   copName: string;
   city: City;

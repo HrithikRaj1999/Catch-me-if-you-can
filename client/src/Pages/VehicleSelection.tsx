@@ -2,14 +2,22 @@ import VehicleDropdown from "../Components/VehicleDropDown";
 import ButtonWithSpinner from "../Components/ButtonWithSpinner";
 import useSelectVehicle from "../hooks/useSelectVehicle";
 import { COPS_NAME } from "../util/constant";
+import Spinner from "../Components/Spinner";
 const VehicleSelection = () => {
   const {
     vehicleSelections,
     setVehicleSelections,
     vehicles,
     updateVehicleCount,
+    loading,
     handleChase,
   } = useSelectVehicle();
+  if (loading)
+    return (
+      <div className="flex justify-center items-center mt-20">
+        <Spinner />
+      </div>
+    );
   return (
     <>
       <div className="flex m-2 flex-col sm:flex-1 gap-2 sm:justify-center ">

@@ -14,7 +14,12 @@ const CitySelection = () => {
     selectedCities,
     setSelectedCities,
   } = useSelectCity();
-  if (loading) return <Spinner />;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center mt-20">
+      <Spinner />
+    </div>
+    );
   return (
     <div className="flex m-2 flex-col sm:flex-1 gap-2 sm:justify-center ">
       <div className="flex flex-col md:justify-center md:items-center m-5 p-4 gap-7">

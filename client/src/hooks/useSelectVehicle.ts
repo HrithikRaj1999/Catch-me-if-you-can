@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const useSelectVehicle = () => {
   const [vehicles, setVehicles] = useState<VehicleType[]>();
+  const [loading,setLoading]=useState(false)
   const [vehicleSelections, setVehicleSelections] = useState<VehicleSelections>(
     {}
   );
@@ -16,10 +17,14 @@ const useSelectVehicle = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true)
         const { data } = await axios.get<VehicleType[]>(GET_VEHICLE_LIST);
         setVehicles(data);
       } catch (error) {
         console.error("Error fetching vehical data:", error);
+      }
+      finally{
+        setLoading(false)
       }
     };
     fetchData();
@@ -72,6 +77,7 @@ const useSelectVehicle = () => {
     vehicles,
     updateVehicleCount,
     handleChase,
+    loading
   };
 };
 
