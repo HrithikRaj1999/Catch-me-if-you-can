@@ -12,6 +12,7 @@ const useSelectVehicle = () => {
   const [vehicleSelections, setVehicleSelections] = useState<VehicleSelections>(
     {}
   );
+  const selectedVehicalName=Object.values(vehicleSelections)
   const navigate = useNavigate();
   const { copsDetails, setCopsDetails } = useCopsContext();
   useEffect(() => {

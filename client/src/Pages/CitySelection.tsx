@@ -17,8 +17,8 @@ const CitySelection = () => {
   if (loading)
     return (
       <div className="flex justify-center items-center mt-20">
-      <Spinner />
-    </div>
+        <Spinner />
+      </div>
     );
   return (
     <div className="flex m-2 flex-col sm:flex-1 gap-2 sm:justify-center ">
@@ -56,12 +56,13 @@ const CitySelection = () => {
           </svg>
         </ButtonWithSpinner>
       </div>
+
       <div className="flex flex-wrap justify-center items-center m-3 gap-x-3">
         {cities?.map(({ _id, thumbnail, name, title, description }) => (
           <div
             key={_id}
             className={`w-[400px] h-[400px] flex flex-col mt-6 text-gray-700 ${
-              selectedCityNames.includes(name) ? "bg-blue-400" : " bg-white"
+              selectedCityNames.includes(name) ? "bg-red-300" : "bg-white"
             } shadow-md bg-clip-border rounded-xl  hover:shadow-2xl`}
           >
             <div className="mx-4 mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">

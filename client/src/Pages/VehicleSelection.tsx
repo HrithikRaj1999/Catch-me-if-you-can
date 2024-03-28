@@ -73,7 +73,11 @@ const VehicleSelection = () => {
               <div
                 key={_id}
                 className={`w-[400px] h-[400px] flex flex-col mt-6 text-gray-700 ${
-                  availableCount === 0 ? "bg-blue-400" : "bg-white"
+                  availableCount === 0
+                    ? "bg-red-200"
+                    : Object.values(vehicleSelections).includes(name)
+                    ? "bg-blue-300"
+                    : "bg-white"
                 } shadow-md bg-clip-border rounded-xl  `}
               >
                 <div className="mx-4 mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
