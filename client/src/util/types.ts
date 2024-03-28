@@ -22,7 +22,11 @@ export interface City {
   updatedAt: string;
   __v: number;
 }
-
+export interface CaptureSuccessPropsType {
+  copName: string;
+  city: City;
+  vehicle: VehicleType;
+}
 export interface SelectedCities {
   [copName: string]: string; // Maps cop name to city name
 }

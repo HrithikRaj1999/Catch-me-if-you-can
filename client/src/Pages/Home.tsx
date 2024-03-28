@@ -2,14 +2,16 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="flex flex-col  gap-y-3 justify-center items-center m-[100px]">
-      <p>
+      <p className="text-2xl text-pretty font-normal">
         Welcome! This is a thrilling game to chase the figutive who has just
         escaped from the Gotham City.
         <br></br>
-        <h1>Information</h1>
-        <br></br> Th criminal may be hiding in only one of the possible 5 neighbouring
-        cities. 3 fearless cops have volunteered in capturing the fugitive
-        hiding and they need your help!
+        <br />
+        <h1>Information: </h1>
+        The criminal may be hiding in only one of the possible 5 neighbouring
+        cities.
+        <br />3 fearless cops have volunteered in capturing the fugitive hiding
+        and they need your help!
       </p>
       <Link
         to="/city-selection"
