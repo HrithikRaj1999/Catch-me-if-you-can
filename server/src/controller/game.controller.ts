@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from "express";
+import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import City from "../model/city.model";
-import Vehicle from "../model/Vehicle.modal";
+import Vehicle from "../model/vehicle.modal";
 import { checkCapture, determineFugitivesLocation } from "../utils/helpers";
 import { ErrorHandler } from "../types/ErrorHandler-type";
 
@@ -53,7 +53,7 @@ export const checkWhetherCrimalCaught = async (
       cities
     );
     res.status(200).json(result);
-  } catch (error) {
+  } catch (error: any) {
     next(error);
   }
 };

@@ -1,73 +1,15 @@
-import { useEffect, useState } from "react";
-import { VehicleSelections, VehicleType } from "../util/types";
 import VehicleDropdown from "../Components/VehicleDropDown";
-import axios from "axios";
-import { BEGIN_CHASE, GET_VEHICLE_LIST } from "../Router/Routes";
-import toast from "react-hot-toast";
-import { useCopsContext } from "../context/CopsContext";
-import { useNavigate } from "react-router-dom";
 import ButtonWithSpinner from "../Components/ButtonWithSpinner";
-const COPS_NAME = ["Cop 1", "Cop 2", "Cop 3"];
+import useSelectVehicle from "../hooks/useSelectVehicle";
+import { COPS_NAME } from "../util/constant";
 const VehicleSelection = () => {
-  const [vehicles, setVehicles] = useState<VehicleType[]>();
-  const [vehicleSelections, setVehicleSelections] = useState<VehicleSelections>(
-    {}
-  );
-  const navigate = useNavigate();
-  const { copsDetails, setCopsDetails } = useCopsContext();
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get<VehicleType[]>(GET_VEHICLE_LIST);
-        setVehicles(data);
-      } catch (error) {
-        console.error("Error fetching vehical data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  const handleChase = async () => {
-    let resData = null;
-    try {
-      setCopsDetails((prev) => {
-        const updated = { ...prev };
-        Object.entries(vehicleSelections).forEach(
-          ([copName, selectedVehical]) => {
-            updated[copName].vehicle = selectedVehical;
-          }
-        );
-        return updated;
-      });
-      const sanitatedData = Object.entries(copsDetails).map(
-        ([key, { city, vehicle }]) => {
-          return { copName: key, city, vehicle };
-        }
-      );
-
-      const { data } = await axios.post(BEGIN_CHASE, {
-        copSelection: sanitatedData,
-      });
-      resData = data;
-    } catch (error: any) {
-      resData = error.response?.data.error || "An error occurred";
-      toast.error(error.response.data.error as string);
-    } finally {
-      navigate("/results", { state: resData });
-    }
-  };
-  const updateVehicleCount = (vehicleKind: string, increment: boolean) => {
-    if (!vehicles) return;
-    const index = vehicles.findIndex((vehicle) => vehicle.name === vehicleKind);
-    if (index !== -1) {
-      if (increment) {
-        vehicles[index].availableCount += 1;
-      } else {
-        if (vehicles[index].availableCount > 0)
-          vehicles[index].availableCount -= 1;
-      }
-    }
-  };
+  const {
+    vehicleSelections,
+    setVehicleSelections,
+    vehicles,
+    updateVehicleCount,
+    handleChase,
+  } = useSelectVehicle();
   return (
     <>
       <div className="flex m-2 flex-col sm:flex-1 gap-2 sm:justify-center ">
@@ -97,6 +39,8 @@ const VehicleSelection = () => {
               className="inline-flex items-center justify-center w-full px-6 py-3 mb-2 text-lg text-white bg-green-500 rounded-md hover:bg-green-400 sm:w-auto sm:mb-0"
               data-primary="green-400"
               data-rounded="rounded-2xl"
+              w={20}
+              h={20}
               onClick={handleChase}
             >
               Lets see who wins the chase !!
@@ -121,12 +65,8 @@ const VehicleSelection = () => {
               <div
                 key={_id}
                 className={`w-[400px] h-[400px] flex flex-col mt-6 text-gray-700 ${
-                  availableCount === 0 ? "bg-red-200" : "bg-white"
-                } shadow-md bg-clip-border rounded-xl ${
-                  availableCount === 0
-                    ? "hover:bg-red-500"
-                    : "hover:shadow-2xl hover:bg-zinc-100"
-                } `}
+                  availableCount === 0 ? "bg-blue-400" : "bg-white"
+                } shadow-md bg-clip-border rounded-xl  `}
               >
                 <div className="mx-4 mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
                   <img
@@ -137,11 +77,11 @@ const VehicleSelection = () => {
                 </div>
                 <div className="p-6">
                   <h5 className="block mb-2 font-sans sm:text-lg md:text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                    {name}
+                    Name: {name}
                   </h5>
-                  <h6>{`${range} ${unit}`}</h6>
+                  <h6>Range: {`${range} ${unit}`}</h6>
                   <p className="block my-3 font-sans text-muted sm:text-lg md:text-muted antialiased font-light leading-relaxed text-inherit">
-                    {`Available Quantity ${availableCount}`}
+                    <b>{`Available Quantity ${availableCount}`}</b>
                   </p>
                 </div>
               </div>

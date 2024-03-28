@@ -26,10 +26,19 @@ export function checkCapture(
     const distance = getCityDistance(allCities, selectedCity) * 2; // Round trip
     const vehicleRange = VehicleAndRangeObj[curSelectedVehicle];
     if (selectedCity === fugitivesLocation && vehicleRange >= distance) {
-      return `${copName} has successfully captured the fugitive in ${selectedCity} using a ${curSelectedVehicle}.`;
+      return {
+        isSuccess: true,
+        message: `${copName} has successfully captured the fugitive in ${selectedCity} using a ${curSelectedVehicle}.`,
+        copName,
+        city: allCities.filter(({ name }) => name === selectedCity),
+        vehical: allVehicles.filter(({ name }) => name === curSelectedVehicle),
+      };
     }
   }
-  throw new ErrorHandler(404, "Fugitive has escaped the location ");
+  return {
+    isSuccess: false,
+    message: `Sorry None of them was able to catch Fugitive, he ran away`,
+  };
 }
 
 export function getCityDistance(allCity: CityType[], selectedCity: string) {
