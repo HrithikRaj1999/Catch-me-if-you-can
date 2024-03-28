@@ -11,7 +11,7 @@ const useSelectCity = () => {
   const navigate = useNavigate();
   const { setCopsDetails } = useCopsContext();
   const [selectedCities, setSelectedCities] = useState<SelectedCities>({});
-
+  const [loading, setLoading] = useState(false);
   const selectedCityNames = useMemo(() => {
     return Object.values(selectedCities);
   }, [selectedCities, cities]);
@@ -19,10 +19,13 @@ const useSelectCity = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const { data } = await axios.get<City[]>(GET_CITY_LIST);
         setCities(data);
       } catch (error) {
         console.error("Error fetching city data:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -46,6 +49,7 @@ const useSelectCity = () => {
     selectedCityNames,
     selectedCities,
     setSelectedCities,
+    loading
   };
 };
 

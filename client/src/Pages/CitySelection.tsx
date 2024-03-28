@@ -1,11 +1,20 @@
 import CityDropdown from "../Components/CityDropdown";
 import ButtonWithSpinner from "../Components/ButtonWithSpinner";
 import useSelectCity from "../hooks/useSelectCity";
+import Spinner from "../Components/Spinner";
 
 const COPS_NAME = ["Cop 1", "Cop 2", "Cop 3"];
 
 const CitySelection = () => {
-  const { handleCitySelection, cities, selectedCityNames, selectedCities, setSelectedCities } = useSelectCity();
+  const {
+    handleCitySelection,
+    loading,
+    cities,
+    selectedCityNames,
+    selectedCities,
+    setSelectedCities,
+  } = useSelectCity();
+  if (loading) return <Spinner />;
   return (
     <div className="flex m-2 flex-col sm:flex-1 gap-2 sm:justify-center ">
       <div className="flex flex-col md:justify-center md:items-center m-5 p-4 gap-7">
