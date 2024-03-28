@@ -18,7 +18,7 @@ export default function Navbar() {
         <Link
           to="/create-city"
           className={`flex items-center ${
-            pathname === "/create-car" ? "underline" : ""
+            pathname === "/create-city" ? "underline" : ""
           }`}
         >
           Create city

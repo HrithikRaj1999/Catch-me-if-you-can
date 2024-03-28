@@ -63,8 +63,8 @@ export const createCity = async (
   next: NextFunction
 ) => {
   try {
-    const { thumbnail, name, distance, unit } = req.body;
-    if (!name || !distance || !thumbnail || !unit) {
+    const { thumbnail, name, description, title, distance, unit } = req.body;
+    if (!name || !distance || !description || !thumbnail || !unit) {
       return new ErrorHandler(400, "Please fill all fields");
     }
 
@@ -73,9 +73,12 @@ export const createCity = async (
       name,
       distance,
       unit,
+      title,
+      description,
     });
     return res.status(201).json(insertedCity);
   } catch (error) {
+    console.log(error);
     next(new ErrorHandler(500, "Server Error: Unable to create city."));
   }
 };

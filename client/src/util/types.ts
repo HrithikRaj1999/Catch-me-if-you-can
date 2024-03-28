@@ -22,6 +22,14 @@ export interface City {
   updatedAt: string;
   __v: number;
 }
+export interface CityFormValues {
+  thumbnail: string;
+  name: string;
+  title: string;
+  description: string;
+  distance: number;
+  unit: string;
+}
 export interface LocationStateType {
   isSuccess: boolean;
   message: string;
@@ -53,6 +61,13 @@ export interface VehicleType {
   createdAt: string;
   updatedAt: string;
   __v: number;
+}
+export interface VehicalFormType {
+  thumbnail: string;
+  name: string;
+  range: number;
+  unit: string;
+  availableCount: number;
 }
 export interface VehicleSelections {
   [copName: string]: string;

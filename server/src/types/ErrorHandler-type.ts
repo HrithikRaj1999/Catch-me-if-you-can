@@ -1,4 +1,4 @@
-// ErrorHandler.ts
+
 export class ErrorHandler extends Error {
   statusCode: number;
   message: string;
