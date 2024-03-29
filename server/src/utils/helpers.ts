@@ -29,7 +29,7 @@ export function checkCapture(
       return {
         isSuccess: true,
         message: `${copName} has successfully captured the fugitive in ${selectedCity} using a ${curSelectedVehicle}.`,
-        copName,
+        copName:copName.toLowerCase(),
         city: allCities.find(({ name }) => name === selectedCity),
         vehicle: allVehicles.find(({ name }) => name === curSelectedVehicle),
       };
