@@ -12,10 +12,11 @@ const useSelectCity = () => {
   const { setCopsDetails } = useCopsContext();
   const [selectedCities, setSelectedCities] = useState<SelectedCities>({});
   const [loading, setLoading] = useState(false);
+
   const selectedCityNames = useMemo(() => {
     return Object.values(selectedCities);
   }, [selectedCities, cities]);
-
+  const isVehicleSelectionBtnDisabled = selectedCityNames.length !== 3;
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,6 +32,8 @@ const useSelectCity = () => {
     fetchData();
   }, []);
   const handleCitySelection = () => {
+    if (isVehicleSelectionBtnDisabled)
+      return toast.error("All cops must select a city");
     try {
       const copAndDetailObj = {} as any;
       Object.entries(selectedCities).forEach(([copName, selectedCity]) => {
@@ -48,8 +51,9 @@ const useSelectCity = () => {
     cities,
     selectedCityNames,
     selectedCities,
+    isVehicleSelectionBtnDisabled,
     setSelectedCities,
-    loading
+    loading,
   };
 };
 

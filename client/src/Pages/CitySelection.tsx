@@ -12,9 +12,10 @@ const CitySelection = () => {
     cities,
     selectedCityNames,
     selectedCities,
+    isVehicleSelectionBtnDisabled,
     setSelectedCities,
   } = useSelectCity();
-  if (loading)
+    if (loading)
     return (
       <div className="flex justify-center items-center mt-20">
         <Spinner />
@@ -34,7 +35,7 @@ const CitySelection = () => {
           ))}
         </div>
         <ButtonWithSpinner
-          className="inline-flex items-center justify-center w-full md:w-2/5 px-6 py-3 mb-2 text-lg text-white bg-green-500 rounded-md hover:bg-green-400 sm:w-auto sm:mb-0"
+          className={`inline-flex items-center justify-center w-full md:w-2/5 px-6 py-3 mb-2 text-lg  ${isVehicleSelectionBtnDisabled? 'bg-green-100 text-black':'bg-green-500  hover:bg-green-400 text-white'} rounded-md sm:w-auto sm:mb-0`}
           data-primary="green-400"
           data-rounded="rounded-2xl"
           w={20}

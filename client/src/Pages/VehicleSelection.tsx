@@ -10,6 +10,7 @@ const VehicleSelection = () => {
     vehicles,
     updateVehicleCount,
     loading,
+    isChaseBtnDisabled,
     handleChase,
   } = useSelectVehicle();
   if (loading)
@@ -44,7 +45,11 @@ const VehicleSelection = () => {
           </div>
           <div>
             <ButtonWithSpinner
-              className="inline-flex items-center justify-center w-full px-6 py-3 mb-2 text-lg text-white bg-green-500 rounded-md hover:bg-green-400 sm:w-auto sm:mb-0"
+              className={`inline-flex items-center justify-center w-full px-6 py-3 mb-2 text-lg  ${
+                isChaseBtnDisabled
+                  ? "bg-green-100 text-black"
+                  : "bg-green-500  hover:bg-green-400 text-white"
+              } rounded-md sm:w-auto sm:mb-0`}
               data-primary="green-400"
               data-rounded="rounded-2xl"
               w={20}

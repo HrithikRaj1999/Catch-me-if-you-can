@@ -12,7 +12,7 @@ const useSelectVehicle = () => {
   const [vehicleSelections, setVehicleSelections] = useState<VehicleSelections>(
     {}
   );
-  const selectedVehicalName=Object.values(vehicleSelections)
+  const isChaseBtnDisabled=Object.values(vehicleSelections).length!==3
   const navigate = useNavigate();
   const { copsDetails, setCopsDetails } = useCopsContext();
   useEffect(() => {
@@ -33,6 +33,7 @@ const useSelectVehicle = () => {
 
   const handleChase = async () => {
     let resData = null;
+    if(isChaseBtnDisabled) return toast.error("All cops must select aleast a vehicle to ride")
     try {
       setCopsDetails((prev) => {
         const updated = { ...prev };
@@ -78,6 +79,7 @@ const useSelectVehicle = () => {
     vehicles,
     updateVehicleCount,
     handleChase,
+    isChaseBtnDisabled,
     loading
   };
 };
